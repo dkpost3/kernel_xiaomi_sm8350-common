@@ -7714,6 +7714,11 @@ static int __nf_tables_abort(struct net *net, enum nfnl_abort_action action)
 	return err;
 }
 
+static void nf_tables_cleanup(struct net *net)
+{
+	nft_validate_state_update(net, NFT_VALIDATE_SKIP);
+}
+
 static int nf_tables_abort(struct net *net, struct sk_buff *skb,
 			   enum nfnl_abort_action action)
 {
